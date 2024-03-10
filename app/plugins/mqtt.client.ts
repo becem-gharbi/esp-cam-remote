@@ -1,42 +1,29 @@
-import type { MqttClient } from 'mqtt'
+import MQTT from 'mqtt'
 
-export default defineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin(async () => {
   const config = useRuntimeConfig()
   const connected = useState('mqtt-connected', () => false)
 
-  let mqttClient: MqttClient | undefined
+  const mqttClient = await MQTT.connectAsync(config.public.mqtt.uri, {
+    keepalive: 90,
+    reconnectPeriod: 1000,
+    username: config.public.mqtt.username,
+    password: config.public.mqtt.password
+  })
 
-  async function connect () {
-    const { default: MQTT } = await import('mqtt')
+  connected.value = true
 
-    await mqttClient?.endAsync()
+  mqttClient.subscribe(`device/${config.public.device.id}/cam/stream`)
 
-    mqttClient = await MQTT.connectAsync(config.public.mqtt.uri, {
-      keepalive: 90,
-      reconnectPeriod: 1000,
-      username: config.public.mqtt.username,
-      password: config.public.mqtt.password
-    })
-
-    connected.value = true
-
-    mqttClient.on('disconnect', () => (connected.value = false))
-
-    mqttClient.on('offline', () => (connected.value = false))
-
-    mqttClient.on('end', () => (connected.value = false))
-
-    mqttClient.on('close', () => (connected.value = false))
-
-    mqttClient.on('connect', () => (connected.value = true))
-  }
-
-  nuxtApp.hook('app:mounted', connect)
+  mqttClient.on('disconnect', () => (connected.value = false))
+  mqttClient.on('offline', () => (connected.value = false))
+  mqttClient.on('end', () => (connected.value = false))
+  mqttClient.on('close', () => (connected.value = false))
+  mqttClient.on('connect', () => (connected.value = true))
 
   return {
     provide: {
       mqtt: {
-        connect,
         connected,
         client: mqttClient
       }

@@ -10,7 +10,6 @@ void onCustomCommand(String message);
 void setup()
 {
   Serial.begin(115200);
-  Serial.printf("\n");
 
   WiFi.begin(ssid, password);
 
@@ -35,4 +34,8 @@ void onCustomCommand(String message)
 
 void loop()
 {
+  static int counter = 0;
+  ESPAdmin::MQTT::publish("/cam/stream", String(counter), 0, false);
+  counter++;
+  delay(50);
 }
