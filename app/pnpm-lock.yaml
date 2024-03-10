@@ -22,6 +22,9 @@ devDependencies:
   '@bg-dev/nuxt-naiveui':
     specifier: ^1.10.3
     version: 1.10.3(vue@3.4.21)
+  '@kgierke/nuxt-basic-auth':
+    specifier: ^1.5.0
+    version: 1.5.0
   '@nuxtjs/eslint-config-typescript':
     specifier: ^12.1.0
     version: 12.1.0(eslint@8.57.0)(typescript@5.4.2)
@@ -994,6 +997,16 @@ packages:
 
   /@juggle/resize-observer@3.4.0:
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
+    dev: true
+
+  /@kgierke/nuxt-basic-auth@1.5.0:
+    resolution: {integrity: sha512-Djc/w8dINSAUJdrr3ojf4M2XnpmJzbxq5Q9ru4SDSaRPBepdgqhrLsfvuH3XP1RiJTbS3nV2fOoBrWWXivjAeA==}
+    dependencies:
+      '@nuxt/kit': 3.10.3
+      defu: 6.1.4
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
     dev: true
 
   /@koa/router@12.0.1:

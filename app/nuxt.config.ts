@@ -5,9 +5,13 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxtjs/tailwindcss',
-    '@bg-dev/nuxt-naiveui'
+    '@bg-dev/nuxt-naiveui',
+    '@kgierke/nuxt-basic-auth'
   ],
   naiveui: {
     colorModePreference: 'light'
+  },
+  basicAuth: {
+    enabled: true
   }
 })
