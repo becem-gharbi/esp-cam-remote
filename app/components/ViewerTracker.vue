@@ -12,7 +12,6 @@ onMounted(() => {
 })
 
 function onViewerChange (state: boolean) {
-  console.log({ state })
   const { $mqtt } = useNuxtApp()
   const config = useRuntimeConfig()
   const topic = `device/${config.public.device.id}/command/custom`
