@@ -6,6 +6,7 @@
       <viewer-tracker />
 
       <div class="fixed bottom-4 right-4 flex gap-2">
+        <device-status />
         <mqtt-status />
         <naive-color-mode-switch secondary :text="false" size="small" />
       </div>

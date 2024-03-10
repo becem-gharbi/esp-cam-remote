@@ -10,7 +10,11 @@ const reader = new FileReader()
 
 onMounted(() => {
   const imageStream = document.getElementById('img-stream')
-  reader.onload = event => imageStream.setAttribute('src', event.target.result)
+  reader.onload = (event) => {
+    if (event.target?.result) {
+      imageStream?.setAttribute('src', event.target.result.toString())
+    }
+  }
 })
 
 useNuxtApp().$mqtt.client.on('message', onMessage)
