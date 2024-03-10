@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     '@kgierke/nuxt-basic-auth'
   ],
   naiveui: {
-    colorModePreference: 'light'
+    colorModePreference: 'system'
   },
   basicAuth: {
     enabled: true
