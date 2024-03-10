@@ -10,9 +10,10 @@ const reader = new FileReader()
 
 onMounted(() => {
   const imageStream = document.getElementById('img-stream')
+
   reader.onload = (event) => {
     if (event.target?.result) {
-      imageStream?.setAttribute('src', event.target.result as string)
+      imageStream?.setAttribute('src', event.target.result.toString())
     }
   }
 })

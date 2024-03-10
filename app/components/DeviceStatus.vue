@@ -21,8 +21,10 @@ useNuxtApp().$mqtt.client.on('message', onMessage)
 
 function onMessage (topic: string, buffer: Buffer) {
   const isTopic = topic === `device/${config.public.device.id}/report/status`
+
   if (isTopic) {
     connected.value = buffer.toString() === '{"status":"connected"}'
+    updateViewer(connected.value)
   }
 }
 </script>
