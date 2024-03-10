@@ -14,10 +14,12 @@
 </template>
 
 <script setup lang="ts">
+const { $mqtt } = useNuxtApp()
 const config = useRuntimeConfig()
 const connected = ref(false)
 
 useNuxtApp().$mqtt.client.on('message', onMessage)
+$mqtt.client.subscribe(`device/${config.public.device.id}/report/status`)
 
 function onMessage (topic: string, buffer: Buffer) {
   const isTopic = topic === `device/${config.public.device.id}/report/status`

@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+const { $mqtt } = useNuxtApp()
 const config = useRuntimeConfig()
 const reader = new FileReader()
 
@@ -18,7 +19,8 @@ onMounted(() => {
   }
 })
 
-useNuxtApp().$mqtt.client.on('message', onMessage)
+$mqtt.client.on('message', onMessage)
+$mqtt.client.subscribe(`device/${config.public.device.id}/cam/stream`)
 
 function onMessage (topic: string, buffer: Buffer) {
   const isTopic = topic === `device/${config.public.device.id}/cam/stream`

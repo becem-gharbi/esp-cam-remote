@@ -13,11 +13,6 @@ export default defineNuxtPlugin(async () => {
 
   connected.value = true
 
-  mqttClient.subscribe([
-    `device/${config.public.device.id}/cam/stream`,
-    `device/${config.public.device.id}/report/status`
-  ])
-
   mqttClient.on('disconnect', () => (connected.value = false))
   mqttClient.on('offline', () => (connected.value = false))
   mqttClient.on('end', () => (connected.value = false))
