@@ -1,5 +1,5 @@
 <template>
-  <div class="border p-4 bg-zinc-100">
+  <div>
     <img id="img-stream" alt="cam-stream">
   </div>
 </template>

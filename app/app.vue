@@ -1,9 +1,14 @@
 <template>
   <naive-config>
     <div class="page justify-center items-center">
-      <cam-display />
+      <cam-display class="rounded-md overflow-hidden border border-zinc-600" />
+
       <viewer-tracker />
-      <mqtt-status class="fixed bottom-4 right-4" />
+
+      <div class="fixed bottom-4 right-4 flex gap-2">
+        <mqtt-status />
+        <naive-color-mode-switch secondary :text="false" size="small" />
+      </div>
     </div>
   </naive-config>
 </template>
