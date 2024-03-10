@@ -6,6 +6,7 @@
 ESPAdmin::Logger logger("app");
 
 void onCustomCommand(String message);
+unsigned int viewersCount = 0;
 
 void setup()
 {
@@ -29,13 +30,35 @@ void setup()
 
 void onCustomCommand(String message)
 {
-  logger.info(message.c_str());
+  if (message == R"({"key":"Viewer_Count","value":"{\"viewer\":\"count\"}"})")
+  {
+    logger.info("%d users are currently watching", viewersCount);
+  }
+  else if (message == R"({"key":"Viewer_Reset","value":"{\"viewer\":\"reset\"}"})")
+  {
+    viewersCount = 0;
+  }
+  else if (message == R"({"viewer":true})")
+  {
+    viewersCount++;
+  }
+  else if (message == R"({"viewer":false})")
+  {
+    if (viewersCount > 0)
+    {
+      viewersCount--;
+    }
+  }
 }
 
 void loop()
 {
-  static int counter = 0;
-  ESPAdmin::MQTT::publish("/cam/stream", String(counter), 0, false);
-  counter++;
+  if (viewersCount > 0)
+  {
+    static int counter = 0;
+    ESPAdmin::MQTT::publish("/cam/stream", String(counter), 0, false);
+    counter++;
+  }
+
   delay(50);
 }

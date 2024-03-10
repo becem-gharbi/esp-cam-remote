@@ -2,6 +2,7 @@
   <naive-config>
     <div class="page justify-center items-center">
       <cam-display />
+      <viewer-tracker />
       <mqtt-status class="fixed bottom-4 right-4" />
     </div>
   </naive-config>
