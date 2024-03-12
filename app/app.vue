@@ -1,11 +1,12 @@
 <template>
   <naive-config>
     <div class="page justify-center items-center p-1">
-      <cam-display class="rounded-md overflow-hidden border border-zinc-600" />
+      <cam-display class="rounded-md overflow-hidden border dark:border-zinc-600" />
 
       <viewer-tracker />
 
       <div class="fixed bottom-4 right-4 flex gap-3">
+        <cam-fps />
         <device-status />
         <mqtt-status />
       </div>
