@@ -13,9 +13,16 @@ onMounted(() => {
   })
 })
 
-const viewer = computed(() => visibility.value && $device.connected.value)
+const viewer = computed(() => {
+  return visibility.value && $device.connected.value
+})
 
-watch(viewer, updateViewer, { immediate: true })
+watch(viewer, (newValue, oldValue) => {
+  if (newValue === false && oldValue === undefined) { return }
+  updateViewer(newValue)
+}, {
+  immediate: true
+})
 
 function updateViewer (state: boolean) {
   /* eslint-disable no-console */
