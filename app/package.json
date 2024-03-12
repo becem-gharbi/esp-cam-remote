@@ -1,6 +1,7 @@
 {
-  "name": "nuxt-app",
+  "name": "esp-cam-remote",
   "private": true,
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "build": "nuxt build",
@@ -8,7 +9,9 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "typecheck": "nuxi typecheck",
+    "release": "npm run lint && npm run typecheck && changelogen --release && git push --follow-tags"
   },
   "dependencies": {
     "mqtt": "^5.3.6",
@@ -21,6 +24,7 @@
     "@kgierke/nuxt-basic-auth": "^1.5.0",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
+    "changelogen": "^0.5.5",
     "eslint": "^8.57.0"
   }
 }
