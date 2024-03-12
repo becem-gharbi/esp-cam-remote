@@ -4,12 +4,12 @@
 #include <credentials.h>
 #include <esp_camera.h>
 
+#define JPEG_QUALITY 30 //  0-63 lower number means higher quality
 #define PWDN_GPIO_NUM 32
 #define RESET_GPIO_NUM -1
 #define XCLK_GPIO_NUM 0
 #define SIOD_GPIO_NUM 26
 #define SIOC_GPIO_NUM 27
-
 #define Y9_GPIO_NUM 35
 #define Y8_GPIO_NUM 34
 #define Y7_GPIO_NUM 39
@@ -25,7 +25,7 @@
 ESPAdmin::Logger logger("app");
 
 void onCustomCommand(String message);
-void setupCamera(int quality);
+void setupCamera();
 unsigned int viewersCount = 0;
 
 void setup()
@@ -49,7 +49,7 @@ void setup()
 
   ESPAdmin::Command::onCustom = &onCustomCommand;
 
-  setupCamera(30);
+  setupCamera();
 }
 
 void loop()
@@ -92,7 +92,7 @@ void onCustomCommand(String message)
   }
 }
 
-void setupCamera(int quality)
+void setupCamera()
 {
   const camera_config_t _camConfig = {
       .pin_pwdn = PWDN_GPIO_NUM,
@@ -114,7 +114,7 @@ void setupCamera(int quality)
       .xclk_freq_hz = 20000000,
       .pixel_format = PIXFORMAT_JPEG,
       .frame_size = FRAMESIZE_HVGA,
-      .jpeg_quality = quality,
+      .jpeg_quality = JPEG_QUALITY,
       .fb_count = 1,
       .grab_mode = CAMERA_GRAB_WHEN_EMPTY,
   };
