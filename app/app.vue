@@ -7,7 +7,7 @@
 
       <div class="fixed bottom-4 right-4 flex gap-3">
         <device-status />
-        <server-status />
+        <mqtt-status />
       </div>
     </div>
   </naive-config>
