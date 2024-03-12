@@ -9,7 +9,7 @@ const visibility = ref(true)
 
 onMounted(() => {
   document.addEventListener('visibilitychange', () => {
-    visibility.value = !document.hidden
+    visibility.value = document.visibilityState === 'visible'
   })
 })
 
