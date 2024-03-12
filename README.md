@@ -15,3 +15,7 @@ This project permits remote camera streaming from `ESP32-Cam` board. It's built 
 7. Build and flash the firmware to `ESP32-CAM` board.
 8. On app, rename `example.env` to `.env` and set secrets.
 9. Install dependencies and run `dev` script.
+
+## License
+
+[MIT License](./LICENSE)
