@@ -1,5 +1,5 @@
 <template>
-  <n-tag v-if="connected" type="success">
+  <n-tag v-if="$device.connected.value" type="success">
     Device
     <template #icon>
       <naive-icon name="ph:check-circle" />
@@ -12,21 +12,3 @@
     </template>
   </n-tag>
 </template>
-
-<script setup lang="ts">
-const { $mqtt } = useNuxtApp()
-const config = useRuntimeConfig()
-const connected = ref(false)
-
-useNuxtApp().$mqtt.client.on('message', onMessage)
-$mqtt.client.subscribe(`device/${config.public.device.id}/report/status`)
-
-function onMessage (topic: string, buffer: Buffer) {
-  const isTopic = topic === `device/${config.public.device.id}/report/status`
-
-  if (isTopic) {
-    connected.value = buffer.toString() === '{"status":"connected"}'
-    updateViewer(connected.value)
-  }
-}
-</script>

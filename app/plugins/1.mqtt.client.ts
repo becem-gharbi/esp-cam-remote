@@ -1,14 +1,13 @@
 import MQTT from 'mqtt'
 
-export default defineNuxtPlugin(async () => {
-  const config = useRuntimeConfig()
+export default defineNuxtPlugin(async (nuxtApp) => {
   const connected = useState('mqtt-connected', () => false)
 
-  const mqttClient = await MQTT.connectAsync(config.public.mqtt.uri, {
+  const mqttClient = await MQTT.connectAsync(nuxtApp.$config.public.mqtt.uri, {
     keepalive: 90,
     reconnectPeriod: 1000,
-    username: config.public.mqtt.username,
-    password: config.public.mqtt.password
+    username: nuxtApp.$config.public.mqtt.username,
+    password: nuxtApp.$config.public.mqtt.password
   })
 
   connected.value = true
