@@ -5,11 +5,11 @@
 
       <viewer-tracker />
 
-      <div class="fixed bottom-4 right-4 flex gap-3">
+      <section class="fixed bottom-4 flex gap-3 text-center">
         <cam-fps />
         <device-status />
         <mqtt-status />
-      </div>
+      </section>
     </div>
   </naive-config>
 </template>
