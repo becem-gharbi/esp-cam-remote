@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img id="img-stream" alt="cam-stream">
+    <img id="img-stream" alt="cam-stream" src="/favicon.ico">
   </div>
 </template>
 
