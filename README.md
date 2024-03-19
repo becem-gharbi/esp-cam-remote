@@ -2,6 +2,11 @@
 
 This project permits remote camera streaming from `ESP32-Cam` board. It's built with [ESP Admin](https://esp-admin.tn/) which is a web-based platform for remote management of ESP32 microcontrollers. The **firmware** takes camera frames as jpeg images and publish them to the MQTT broker registered on ESP Admin. The frontend **app** subscribes to the stream topic and renders the incoming frames on an image element. The result is a video stream with a frame rate that depends on image quality and network latency.
 
+## Requirements
+- Node.js +v18
+- PlatformIO
+- ESP32-Cam board
+  
 ## Setup
 
 1. Create an account on [ESP Admin Cloud](https://app.esp-admin.tn/).
